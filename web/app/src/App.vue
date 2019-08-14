@@ -57,14 +57,14 @@
           <v-list-item
                   v-else
                   :key="i"
-                  @click=""
+                  :to="{name: item.route}"
           >
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title class="grey--text">
-                {{ item.text }}
+                {{item.text}}
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -94,20 +94,16 @@
     data: () => ({
       drawer: null,
       items: [
-        { icon: 'bookmarks', text: 'Bookmarks' },
-        { icon: 'touch_app', text: 'Reminders' },
+        { icon: 'bookmarks', text: 'Bookmarks', route: 'Index' },
+        { icon: 'label', text: 'Labels', route: 'Labels' },
         { divider: true },
-        { heading: 'Labels' },
-        { icon: 'add', text: 'Create new label' },
+        { icon: 'archive', text: 'Archive', route: 'Archive' },
+        { icon: 'delete', text: 'Trash', route: 'Trash' },
         { divider: true },
-        { icon: 'archive', text: 'Archive' },
-        { icon: 'delete', text: 'Trash' },
-        { divider: true },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Trash' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Keyboard shortcuts' },
+        { icon: 'settings', text: 'Settings', route: 'Settings' },
+        { icon: 'help', text: 'Help', route: 'Help' },
+        { icon: 'phonelink', text: 'App downloads', route: 'Apps' },
+        { icon: 'keyboard', text: 'Keyboard shortcuts', route: 'Shortcuts' },
       ],
     }),
   }
