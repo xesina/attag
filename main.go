@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"github.com/gin-contrib/cors"
 )
 
 // Bookmark represents a bookmark
@@ -49,6 +50,8 @@ func main() {
 	}
 
 	r := gin.Default()
+	r.Use(cors.Default())
+
 	v1 := r.Group("/api/v1")
 
 	v1.GET("/ping", func(c *gin.Context) {
@@ -71,7 +74,7 @@ func main() {
 		var bookmark Bookmark
 		if err := db.First(&bookmark, "id = ?", id).Error; err != nil {
 			if gorm.IsRecordNotFoundError(err) {
-				c.JSON(http.StatusNotFound, gin.H{"message":"resource not found"})
+				c.JSON(http.StatusNotFound, gin.H{"message": "resource not found"})
 				return
 			}
 			c.JSON(http.StatusInternalServerError, gin.H{"message": "internal server error"})

@@ -1,10 +1,10 @@
 <template>
     <v-container fluid>
-        <v-row  justify="center">
+        <v-row justify="center">
             <v-col cols="12" md="11">
                 <v-data-table
                         :headers="headers"
-                        :items="desserts"
+                        :items="bookmarks"
                         :items-per-page="5"
                         class="elevation-1"
                 ></v-data-table>
@@ -16,7 +16,7 @@
 <script>
     export default {
         name: 'Index',
-        data () {
+        data() {
             return {
                 headers: [
                     {
@@ -25,33 +25,19 @@
                         sortable: false,
                         value: 'name',
                     },
-                    { text: 'URL', value: 'url' },
-                    { text: 'Tags', value: 'tags' },
-                ],
-                desserts: [
-                    {
-                        name: 'Google.com',
-                        url: 'https://google.com',
-                        tags: 'search, google',
-                    },
-                    {
-                        name: 'Reddit.com',
-                        url: 'https://reddit.com',
-                        tags: 'social',
-                    },
-                    {
-                        name: 'Stackoverflow.com',
-                        url: 'https://stackoverflow.com',
-                        tags: 'code, programming',
-                    },
-                    {
-                        name: 'golang.org',
-                        url: 'https://golang.org',
-                        tags: 'programming, golang',
-                    },
-                ],
+                    {text: 'URL', value: 'url'},
+                    {text: 'Tags', value: 'tags'},
+                ]
             }
         },
+        mounted() {
+            this.$store.dispatch('loadBookmarks')
+        },
+        computed: {
+            bookmarks() {
+                return this.$store.state.bookmarks
+            }
+        }
     }
 </script>
 
