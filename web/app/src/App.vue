@@ -4,6 +4,7 @@
             app
             clipped-left
             color="amber"
+            v-if="isLoggedIn"
     >
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <span class="title ml-3 mr-5">Bright&nbsp;<span class="font-weight-light">Attag</span></span>
@@ -22,6 +23,7 @@
             app
             clipped
             color="grey lighten-4"
+            v-if="isLoggedIn"
     >
       <v-list
               dense
@@ -106,6 +108,9 @@
         { icon: 'keyboard', text: 'Keyboard shortcuts', route: 'Shortcuts' },
       ],
     }),
+    computed: {
+      isLoggedIn : function(){ return this.$store.getters.isLoggedIn}
+    }
   }
 </script>
 
