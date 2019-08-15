@@ -67,7 +67,17 @@ func main() {
 	}
 
 	r := gin.Default()
-	r.Use(cors.Default())
+
+	corsMiddleware := cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+		AllowWebSockets:  true,
+		AllowFiles:       true,
+	})
+	r.Use(corsMiddleware)
 
 	auth, err := authMiddleware()
 	if err != nil {
@@ -83,7 +93,6 @@ func main() {
 	})
 
 	v1.POST("/login", auth.LoginHandler)
-
 
 	r.NoRoute(auth.MiddlewareFunc(), func(c *gin.Context) {
 		claims := jwt.ExtractClaims(c)
@@ -185,7 +194,7 @@ func authMiddleware() (*jwt.GinJWTMiddleware, error) {
 
 			if (userID == "admin" && password == "admin") || (userID == "test" && password == "test") {
 				return &User{
-					Username:  userID,
+					Username: userID,
 				}, nil
 			}
 
