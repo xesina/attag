@@ -31,6 +31,7 @@
                                         prepend-icon="person"
                                         type="text"
                                         v-model="username"
+                                        placeholder="Username"
                                 ></v-text-field>
 
                                 <v-text-field
@@ -40,6 +41,7 @@
                                         prepend-icon="lock"
                                         type="password"
                                         v-model="password"
+                                        placeholder="Password"
                                 ></v-text-field>
                             </v-form>
                         </v-card-text>

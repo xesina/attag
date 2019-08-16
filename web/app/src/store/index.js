@@ -34,7 +34,6 @@ const store = new Vuex.Store({
     },
     actions: {
         loadBookmarks({commit}) {
-            console.log('load bookmarks');
             axios
                 .get('http://127.0.0.1:8585/api/v1/bookmarks')
                 .then(data => {
