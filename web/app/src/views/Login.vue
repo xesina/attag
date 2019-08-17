@@ -23,8 +23,8 @@
                             <v-toolbar-title>Login form</v-toolbar-title>
                             <v-spacer></v-spacer>
                         </v-toolbar>
-                        <v-card-text>
-                            <v-form>
+                        <v-form @submit.prevent="login">
+                            <v-card-text>
                                 <v-text-field
                                         label="Username"
                                         name="username"
@@ -43,12 +43,12 @@
                                         v-model="password"
                                         placeholder="Password"
                                 ></v-text-field>
-                            </v-form>
-                        </v-card-text>
-                        <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn color="grey lighten-2" @click="login">Login</v-btn>
-                        </v-card-actions>
+                            </v-card-text>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn color="grey lighten-2" type="submit">Login</v-btn>
+                            </v-card-actions>
+                        </v-form>
                     </v-card>
                 </v-col>
             </v-row>
