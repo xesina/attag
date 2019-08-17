@@ -31,8 +31,7 @@
             }
         },
         mounted() {
-            this.$store.dispatch('loadBookmarks')
-                .catch(err => console.log(err))
+            this.$store.dispatch('getBookmarks')
         },
         computed: {
             bookmarks() {

@@ -33,7 +33,7 @@ const store = new Vuex.Store({
         },
     },
     actions: {
-        loadBookmarks({commit}) {
+        getBookmarks({commit}) {
             axios
                 .get('http://127.0.0.1:8585/api/v1/bookmarks')
                 .then(data => {
@@ -41,6 +41,7 @@ const store = new Vuex.Store({
                     commit('SET_BOOKMARKS', bookmarks)
                 })
                 .catch(error => {
+                    commit('SET_BOOKMARKS', []);
                     console.log(error)
                 })
         },

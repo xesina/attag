@@ -70,7 +70,6 @@
             login: function () {
                 const username = this.username
                 const password = this.password
-                console.log("Login.vue: login method")
                 this.$store.dispatch('login', {username, password})
                     .then(() => this.$router.push('/'))
                     .catch(err => console.log(err))
