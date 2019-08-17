@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        Apps
-    </v-content>
+    <h1>App Download</h1>
 </template>
 
 <script>

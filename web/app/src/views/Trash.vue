@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        Trash
-    </v-content>
+    <h2>Trash</h2>
 </template>
 
 <script>

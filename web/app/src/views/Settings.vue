@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        settings
-    </v-content>
+    <h2>Settings</h2>
 </template>
 
 <script>

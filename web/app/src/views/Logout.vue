@@ -1,5 +1,5 @@
 <template>
-    <v-content>Logging out ...</v-content>
+    <h1>Logging out ...</h1>
 </template>
 
 <script>
@@ -13,7 +13,7 @@
                 const sleep = (milliseconds) => {
                     return new Promise(resolve => setTimeout(resolve, milliseconds))
                 }
-                const after = 500
+                const after = 1000
 
                 sleep(after).then(() => {
                     this.$store.dispatch('logout')

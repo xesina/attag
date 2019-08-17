@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        <h2>Not Found</h2>
-    </v-content>
+    <h2>Not Found</h2>
 </template>
 
 <script>

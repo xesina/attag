@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        labels
-    </v-content>
+    <h1>Labels</h1>
 </template>
 
 <script>

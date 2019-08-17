@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        Shortcuts
-    </v-content>
+    <h2>Shortcuts</h2>
 </template>
 
 <script>

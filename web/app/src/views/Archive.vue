@@ -1,7 +1,5 @@
 <template>
-    <v-content>
-        Archive
-    </v-content>
+    <h1>Archive</h1>
 </template>
 
 <script>
