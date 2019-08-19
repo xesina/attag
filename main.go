@@ -3,6 +3,8 @@ package main
 import (
 	"database/sql/driver"
 	"fmt"
+	"github.com/appleboy/gin-jwt/v2"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -10,8 +12,6 @@ import (
 	"net/http"
 	"strings"
 	"time"
-	"github.com/gin-contrib/cors"
-	"github.com/appleboy/gin-jwt/v2"
 )
 
 // User represents a user
