@@ -120,10 +120,11 @@
             this.$http.interceptors.response.use(undefined, err => {
                 let res = err.response;
                 if (res.status === 401 && res.config && !res.config.__isRetryRequest) {
+                    this.$toast("Unauthorized error " + res.status)
                     return new Promise((resolve, reject) => {
                         this.$store.dispatch('logout')
                             .then(() => this.$router.push({name: 'Login'}))
-                            .catch(err => console.log(err))
+                            .catch(err => {})
                     })
                 }
                 throw err;

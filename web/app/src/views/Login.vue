@@ -74,7 +74,10 @@
                         this.$toast("Logged in successfully")
                         this.$router.push('/')
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => {
+                        console.log(err);
+                        this.$toast("Login failed")
+                    })
             }
         }
     }
