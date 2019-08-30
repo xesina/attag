@@ -11,7 +11,7 @@
         name: 'Footer',
         data: () => ({
             author: 'xesina'
-        })
+        }),
     }
 </script>
 

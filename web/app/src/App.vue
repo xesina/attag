@@ -15,7 +15,33 @@
                     label="Search"
                     prepend-inner-icon="search"
             ></v-text-field>
-            <v-spacer></v-spacer>
+            <div class="flex-grow-1"></div>
+
+            <v-btn icon medium @click.stop="showNewBookmarkDialog">
+                <v-avatar>
+                    <v-icon>mdi-bookmark-plus</v-icon>
+                </v-avatar>
+            </v-btn>
+
+            <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                    <v-btn icon medium v-on="on">
+                        <v-avatar>
+                            <v-icon>mdi-account</v-icon>
+                        </v-avatar>
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item
+                            v-for="(item, index) in menu"
+                            :key="index"
+                            @click=""
+                    >
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+
         </v-app-bar>
 
         <v-navigation-drawer
@@ -76,6 +102,7 @@
         </v-navigation-drawer>
 
         <v-content>
+            <NewBookmark :show="NewBookmarkDialogVisible"/>
             <router-view></router-view>
         </v-content>
 
@@ -86,11 +113,12 @@
 
 <script>
     import Footer from '@/components/Footer.vue'
+    import NewBookmark from '@/components/NewBookmark.vue'
 
 
     export default {
         name: 'App',
-        components: {Footer},
+        components: {NewBookmark, Footer},
         props: {
             source: String,
         },
@@ -109,13 +137,33 @@
                 {icon: 'keyboard', text: 'Keyboard shortcuts', route: 'Shortcuts'},
                 {icon: 'logout', text: 'Logout', route: 'Logout'},
             ],
+            menu: [
+                {title: 'Click Me'},
+                {title: 'Click Me'},
+                {title: 'Click Me'},
+                {title: 'Click Me 2'},
+            ],
         }),
         computed: {
             isLoggedIn: function () {
                 return this.$store.getters.isLoggedIn
+            },
+            NewBookmarkDialogVisible: function () {
+                return this.$store.getters.showNewBookmarkDialog
             }
         },
-        methods: {},
+        methods: {
+            showNewBookmarkDialog: function () {
+                this.$store.dispatch('showNewBookmarkDialog')
+                    .then(() => {
+                        this.$toast("show new dialog")
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.$toast("show new dialog failed")
+                    })
+            }
+        },
         created: function () {
             this.$http.interceptors.response.use(undefined, err => {
                 let res = err.response;
@@ -124,7 +172,8 @@
                     return new Promise((resolve, reject) => {
                         this.$store.dispatch('logout')
                             .then(() => this.$router.push({name: 'Login'}))
-                            .catch(err => {})
+                            .catch(err => {
+                            })
                     })
                 }
                 throw err;

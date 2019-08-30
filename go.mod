@@ -4,7 +4,7 @@ go 1.12
 
 require (
 	cloud.google.com/go v0.44.0 // indirect
-	github.com/appleboy/gin-jwt/v2 v2.6.2 // indirect
+	github.com/appleboy/gin-jwt/v2 v2.6.2
 	github.com/astaxie/beego v1.12.0 // indirect
 	github.com/bradfitz/gomemcache v0.0.0-20190329173943-551aad21a668 // indirect
 	github.com/casbin/casbin v1.9.1 // indirect
@@ -13,7 +13,7 @@ require (
 	github.com/couchbase/goutils v0.0.0-20190315194238-f9d42b11473b // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20190806190131-db2462fef53b // indirect
 	github.com/edsrzf/mmap-go v1.0.0 // indirect
-	github.com/gin-contrib/cors v1.3.0 // indirect
+	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.4.0
 	github.com/go-redis/redis v6.15.2+incompatible // indirect

@@ -6,12 +6,16 @@ Vue.use(Vuex, axios);
 
 const store = new Vuex.Store({
     state: {
+        showNewBookmarkDialog: false,
         status: '',
         bookmarks: [],
         token: localStorage.getItem('token') || '',
         user: {}
     },
     mutations: {
+        SET_SHOW_NEW_BOOKMARK_DIALOG(state, show) {
+            state.showNewBookmarkDialog = show
+        },
         SET_BOOKMARKS(state, bookmarks) {
             state.bookmarks = bookmarks
         },
@@ -73,11 +77,15 @@ const store = new Vuex.Store({
                 delete axios.defaults.headers.common['Authorization']
                 resolve()
             })
+        },
+        showNewBookmarkDialog({commit}) {
+            commit('SET_SHOW_NEW_BOOKMARK_DIALOG', true);
         }
     },
     getters: {
         isLoggedIn: state => !!state.token,
         LoginStatus: state => state.status,
+        showNewBookmarkDialog: state => state.showNewBookmarkDialog,
     }
 });
 
