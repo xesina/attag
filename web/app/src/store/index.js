@@ -78,8 +78,8 @@ const store = new Vuex.Store({
                 resolve()
             })
         },
-        showNewBookmarkDialog({commit}) {
-            commit('SET_SHOW_NEW_BOOKMARK_DIALOG', true);
+        showNewBookmarkDialog({commit}, show) {
+            commit('SET_SHOW_NEW_BOOKMARK_DIALOG', show);
         }
     },
     getters: {

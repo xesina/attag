@@ -102,7 +102,7 @@
         </v-navigation-drawer>
 
         <v-content>
-            <NewBookmark :show="NewBookmarkDialogVisible"/>
+            <NewBookmark/>
             <router-view></router-view>
         </v-content>
 
@@ -154,7 +154,7 @@
         },
         methods: {
             showNewBookmarkDialog: function () {
-                this.$store.dispatch('showNewBookmarkDialog')
+                this.$store.dispatch('showNewBookmarkDialog', true)
                     .then(() => {
                         this.$toast("show new dialog")
                     })

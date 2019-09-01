@@ -1,6 +1,6 @@
 <template>
     <v-row justify="center">
-        <v-dialog v-model="show" persistent max-width="600px" s>
+        <v-dialog v-model="showDialog" persistent max-width="600px" s>
             <v-card>
                 <v-card-title>
                     <span class="headline">New Bookmark</span>
@@ -20,8 +20,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
-                    <v-btn color="blue darken-1" text @click="show = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="show = false">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click="closeDialog">Close</v-btn>
+                    <v-btn color="blue darken-1" text @click="closeDialog">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -34,6 +34,23 @@
         props: {
             show: Boolean,
         },
+        computed: {
+            showDialog() {
+                return this.$store.getters.showNewBookmarkDialog
+            }
+        },
+        methods: {
+            closeDialog() {
+                this.$store.dispatch('showNewBookmarkDialog', false)
+                    .then(() => {
+                        this.$toast("close new dialog")
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.$toast("close new dialog failed")
+                    })
+            }
+        }
     }
 </script>
 
