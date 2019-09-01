@@ -9,10 +9,10 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12">
-                                <v-text-field label="URL" required></v-text-field>
+                                <v-text-field v-model="name" label="Name" required></v-text-field>
                             </v-col>
                             <v-col cols="12">
-                                <v-text-field label="URL" required></v-text-field>
+                                <v-text-field v-model="url" label="URL" required></v-text-field>
                             </v-col>
 
                         </v-row>
@@ -21,7 +21,7 @@
                 <v-card-actions>
                     <div class="flex-grow-1"></div>
                     <v-btn color="blue darken-1" text @click="closeDialog">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="closeDialog">Save</v-btn>
+                    <v-btn color="blue darken-1" text @click="saveBookmark">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -31,6 +31,12 @@
 <script>
     export default {
         name: 'NewBookmark',
+        data() {
+            return {
+                name: "",
+                url: "",
+            }
+        },
         props: {
             show: Boolean,
         },
@@ -48,6 +54,26 @@
                     .catch(err => {
                         console.log(err);
                         this.$toast("close new dialog failed")
+                    })
+            },
+            saveBookmark() {
+                const name = this.name
+                const url = this.url
+
+                this.$store.dispatch('saveBookmark', {name, url})
+                    .then(() => {
+                        this.$toast("Bookmark saved successfully")
+                        this.closeDialog()
+                        this.$router.push('/').catch(err => {})
+                        this.$store.dispatch('getBookmarks', {name, url})
+                            .then(() => {
+                            })
+                            .catch(err => {
+                            })
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        this.$toast("Bookmark save failed")
                     })
             }
         }

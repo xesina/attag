@@ -156,11 +156,9 @@
             showNewBookmarkDialog: function () {
                 this.$store.dispatch('showNewBookmarkDialog', true)
                     .then(() => {
-                        this.$toast("show new dialog")
                     })
                     .catch(err => {
                         console.log(err);
-                        this.$toast("show new dialog failed")
                     })
             }
         },

@@ -81,7 +81,20 @@ export const actions = {
     },
     showNewBookmarkDialog({commit}, show) {
         commit('SET_SHOW_NEW_BOOKMARK_DIALOG', show);
-    }
+    },
+    saveBookmark({commit}, bookmark) {
+        return new Promise((resolve, reject) => {
+            axios
+                .post('http://127.0.0.1:8585/api/v1/bookmarks', bookmark)
+                .then(resp => {
+                    const token = resp.data.token
+                    resolve(resp)
+                })
+                .catch(err => {
+                    reject(err)
+                })
+        })
+    },
 };
 
 export const getters = {
