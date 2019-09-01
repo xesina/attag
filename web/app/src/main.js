@@ -6,7 +6,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import router from './router'
-import index from "./store";
+import store from "./store";
 import axios from 'axios'
 
 Vue.config.productionTip = false;
@@ -20,6 +20,6 @@ if (token) {
 new Vue({
   vuetify,
   router,
-  store: index,
+  store: store,
   render: h => h(App)
 }).$mount('#app');
