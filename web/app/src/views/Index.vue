@@ -13,36 +13,7 @@
                             v-for="bookmark in bookmarks"
                             :key="bookmarks.name"
                     >
-                        <v-card>
-                            <v-card-title
-                                    class="fill-height align-end"
-                                    v-text="bookmark.name"
-                            ></v-card-title>
-                            <v-card-text v-text="bookmark.url"></v-card-text>
-
-                            <v-card-actions>
-                                <div class="flex-grow-1"></div>
-                                <v-btn icon>
-                                    <v-icon>mdi-share-variant</v-icon>
-                                </v-btn>
-
-                                <v-menu offset-y>
-                                    <template v-slot:activator="{ on }">
-                                        <v-btn icon medium v-on="on">
-                                            <v-avatar>
-                                                <v-icon>mdi-dots-vertical</v-icon>
-                                            </v-avatar>
-                                        </v-btn>
-                                    </template>
-                                    <v-list>
-                                        <v-list-item>
-                                            <v-list-item-title>item</v-list-item-title>
-                                        </v-list-item>
-                                    </v-list>
-                                </v-menu>
-
-                            </v-card-actions>
-                        </v-card>
+                        <Bookmark :name="bookmark.name" :url="bookmark.url"></Bookmark>
                     </v-col>
                 </v-row>
             </v-col>
@@ -51,8 +22,10 @@
 </template>
 
 <script>
+    import Bookmark from "../components/Bookmark";
     export default {
         name: 'Index',
+        components: {Bookmark},
         data() {
             return {
                 headers: [
