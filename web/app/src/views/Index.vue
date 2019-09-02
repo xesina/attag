@@ -2,30 +2,18 @@
     <v-container fluid>
         <v-row align="center" justify="center">
             <v-col cols="11">
-                <v-row justify="start" align="center">
-                    <v-col
-                            cols="12"
-                            lg="3"
-                            sm="6"
-                            md="4"
-                            xs="1"
-                            xl="2"
-                            v-for="bookmark in bookmarks"
-                            :key="bookmarks.name"
-                    >
-                        <Bookmark :name="bookmark.name" :url="bookmark.url"></Bookmark>
-                    </v-col>
-                </v-row>
+                <BookmarkList/>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
-    import Bookmark from "../components/Bookmark";
+    import BookmarkList from "../components/BookmarkList";
+
     export default {
         name: 'Index',
-        components: {Bookmark},
+        components: {BookmarkList},
         data() {
             return {
                 headers: [
@@ -40,14 +28,6 @@
                 ]
             }
         },
-        mounted() {
-            this.$store.dispatch('getBookmarks')
-        },
-        computed: {
-            bookmarks() {
-                return this.$store.state.bookmarks
-            }
-        }
     }
 </script>
 

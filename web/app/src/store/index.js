@@ -35,6 +35,16 @@ export const mutations = {
         state.token = ''
         state.user = {}
     },
+    NEW_BOOKMARK(state, bookmark) {
+        state.bookmarks.push(bookmark)
+    },
+    DELETE_BOOKMARK(state, id) {
+        state.bookmarks.forEach(function (bookmark, index) {
+            if (bookmark.id === id) {
+                state.bookmarks.splice(index, 1)
+            }
+        })
+    }
 };
 
 export const actions = {
@@ -87,7 +97,8 @@ export const actions = {
             axios
                 .post('http://127.0.0.1:8585/api/v1/bookmarks', bookmark)
                 .then(resp => {
-                    const token = resp.data.token
+                    const saveBookmark = resp.data
+                    commit('NEW_BOOKMARK', saveBookmark)
                     resolve(resp)
                 })
                 .catch(err => {
@@ -95,6 +106,19 @@ export const actions = {
                 })
         })
     },
+    deleteBookmark({commit}, id) {
+        return new Promise((resolve, reject) => {
+            axios
+                .delete(`http://127.0.0.1:8585/api/v1/bookmarks/${id}`)
+                .then(resp => {
+                    commit('DELETE_BOOKMARK', id)
+                    resolve(resp)
+                })
+                .catch(err => {
+                    reject(err)
+                })
+        })
+    }
 };
 
 export const getters = {

@@ -49,11 +49,9 @@
             closeDialog() {
                 this.$store.dispatch('showNewBookmarkDialog', false)
                     .then(() => {
-                        this.$toast("close new dialog")
                     })
                     .catch(err => {
                         console.log(err);
-                        this.$toast("close new dialog failed")
                     })
             },
             saveBookmark() {
@@ -65,11 +63,6 @@
                         this.$toast("Bookmark saved successfully")
                         this.closeDialog()
                         this.$router.push('/').catch(err => {})
-                        this.$store.dispatch('getBookmarks', {name, url})
-                            .then(() => {
-                            })
-                            .catch(err => {
-                            })
                     })
                     .catch(err => {
                         console.log(err);
